@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 DATE=${DATE}
 USER=$(whoami)
 AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
@@ -17,7 +17,6 @@ sudo a2enmod proxy_http
 sudo systemctl enable apache2
 sudo /bin/bash -c 'echo "0 5 * * * $USER $HOME/minecraft-cuarentenacraft/scripts/backup.sh" >> /etc/crontab'
 echo "FINISHED SERVER PREREQUISITES"
-cat <<'EOF' >> $HOME/startup.sh
 echo "STARTING SERVER CONFIG"
 mkdir $HOME/backups
 cd $HOME/backups
@@ -28,4 +27,3 @@ mv minecraft-cuarentenacraft $HOME/
 sudo cp -f $HOME/minecraft-cuarentenacraft/scripts/000-default.conf /etc/apache2/sites-available/
 sudo systemctl restart apache2
 echo "FINISHED SERVER CONFIG"
-EOF
