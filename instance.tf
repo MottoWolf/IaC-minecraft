@@ -1,11 +1,8 @@
 resource "google_compute_instance" "minecraft" {
   name = "cuarentenacraft"
-  #machine_type = var.g-machine-type
-  machine_type = "e2-custom-4-18432"
-  zone         = var.g-zone
-
+  machine_type = var.g-machine-type
+  allow_stopping_for_update = true
   tags = ["http-server", "https-server", "minecraft"]
-
   boot_disk {
     initialize_params {
       size  = 30
