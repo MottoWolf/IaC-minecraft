@@ -25,7 +25,7 @@ resource "google_compute_instance" "minecraft" {
     ssh-keys = var.ssh-key
   }
 
-  metadata_startup_script = data.template_file.minecraft.rendered #file("startup.sh")
+  # metadata_startup_script = data.template_file.minecraft.rendered
 }
 
 data "template_file" "minecraft" {
