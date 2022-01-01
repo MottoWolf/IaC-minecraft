@@ -6,7 +6,7 @@ AWS_ACCESS_KEY_SECRET=${AWS_ACCESS_KEY_SECRET}
 
 echo "STARTING SERVER PREREQUISITES"
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install unzip zip openjdk-16-jre apache2 screen -y
+sudo apt install unzip zip openjdk-17-jre apache2 screen -y
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
