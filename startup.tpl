@@ -1,6 +1,7 @@
+cat <<EOF > start-minecraft.sh
 #!/bin/bash
 DATE=${DATE}
-USER=$(whoami)
+GCP_USER=${GCP_USER}
 AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
 AWS_ACCESS_KEY_SECRET=${AWS_ACCESS_KEY_SECRET}
 
@@ -11,20 +12,20 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 rm awscliv2.zip
-aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" && aws configure set aws_secret_access_key "$AWS_ACCESS_KEY_SECRET" && aws configure set region "eu-west-2" && aws configure set output "text"
+aws configure set aws_access_key_id "\$AWS_ACCESS_KEY_ID" && aws configure set aws_secret_access_key "\$AWS_ACCESS_KEY_SECRET" && aws configure set region "eu-west-2" && aws configure set output "text"
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 sudo systemctl enable apache2
 sudo /bin/bash -c 'echo "0 5 * * * $USER $HOME/minecraft-cuarentenacraft/scripts/backup.sh" >> /etc/crontab'
 echo "FINISHED SERVER PREREQUISITES"
 echo "STARTING SERVER CONFIG"
-mkdir $HOME/backups
-cd $HOME/backups
-aws s3 cp s3://cuarentenacraft-backups/minecraft-server-$DATE.zip $HOME/backups/
-unzip $HOME/backups/minecraft-server-$DATE.zip
-rm $HOME/backups/minecraft-server-$DATE.zip
-mv $HOME/backups/minecraft-cuarentenacraft $HOME/
-sudo cp -f $HOME/minecraft-cuarentenacraft/scripts/000-default.conf /etc/apache2/sites-available/
+mkdir /home/\$GCP_USER/backups
+aws s3 cp s3://cuarentenacraft-backups/minecraft-server-\$DATE.zip /home/\$GCP_USER/backups/
+unzip /home/\$GCP_USER/backups/minecraft-server-\$DATE.zip
+rm /home/\$GCP_USER/backups/minecraft-server-\$DATE.zip
+mv minecraft-cuarentenacraft /home/\$GCP_USER/
+sudo cp -f /home/\$GCP_USER/minecraft-cuarentenacraft/scripts/000-default.conf /etc/apache2/sites-available/
 sudo systemctl restart apache2
 echo "FINISHED SERVER CONFIG"
 exit
+EOF

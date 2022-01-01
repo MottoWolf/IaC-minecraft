@@ -1,8 +1,8 @@
 resource "google_compute_instance" "minecraft" {
-  name = "cuarentenacraft"
-  machine_type = var.g-machine-type
+  name                      = "cuarentenacraft"
+  machine_type              = var.g-machine-type
   allow_stopping_for_update = true
-  tags = ["http-server", "https-server", "minecraft"]
+  tags                      = ["minecraft", "minecraft-web"]
   boot_disk {
     initialize_params {
       size  = 30
@@ -31,5 +31,6 @@ data "template_file" "minecraft" {
     AWS_ACCESS_KEY_ID     = var.AWS_ACCESS_KEY_ID
     AWS_ACCESS_KEY_SECRET = var.AWS_ACCESS_KEY_SECRET
     DATE                  = var.DATE
+    GCP_USER              = var.GCP_USER
   }
 }

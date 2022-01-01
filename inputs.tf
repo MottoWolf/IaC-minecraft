@@ -37,3 +37,8 @@ variable "DATE" {
   description = "Date of the backup to recover in format DD-MM-hhmm"
   type        = string
 }
+
+variable "GCP_USER" {
+  description = "GCP user which will have the minecraft server ownership"
+  type        = string
+}
