@@ -8,4 +8,5 @@ g-machine-type = "e2-custom-8-18432"
 ssh-key = ""
 AWS_ACCESS_KEY_ID = ""
 AWS_ACCESS_KEY_SECRET = ""
-DATE = "MM-DD-hhmm" # Date to recover backup
+DATE = "MM-DD-AAAA" #Date to recover backup
+GCP_USER = "" #GCP user

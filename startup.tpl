@@ -20,12 +20,17 @@ sudo /bin/bash -c 'echo "0 5 * * * $USER $HOME/minecraft-cuarentenacraft/scripts
 echo "FINISHED SERVER PREREQUISITES"
 echo "STARTING SERVER CONFIG"
 mkdir /home/\$GCP_USER/backups
-aws s3 cp s3://cuarentenacraft-backups/minecraft-server-\$DATE.zip /home/\$GCP_USER/backups/
-unzip /home/\$GCP_USER/backups/minecraft-server-\$DATE.zip
-rm /home/\$GCP_USER/backups/minecraft-server-\$DATE.zip
+cd /home/\$GCP_USER/backups
+aws s3 cp s3://cuarentenacraft-backups/minecraft-server-\$DATE.zip .
+unzip minecraft-server-\$DATE.zip
+rm minecraft-server-\$DATE.zip
 mv minecraft-cuarentenacraft /home/\$GCP_USER/
-sudo cp -f /home/\$GCP_USER/minecraft-cuarentenacraft/scripts/000-default.conf /etc/apache2/sites-available/
+sudo cp -f minecraft-cuarentenacraft/scripts/000-default.conf /etc/apache2/sites-available/
 sudo systemctl restart apache2
+chown \$GCP_USER:\$GCP_USER /home/\$GCP_USER/minecraft-cuarentenacraft/*
 echo "FINISHED SERVER CONFIG"
+rm start-minecraft.sh
+rm -rf minecraft-cuarentenacraft
+rm -rf minecraft-server-\$DATE.zip
 exit
 EOF
