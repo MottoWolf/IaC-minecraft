@@ -16,7 +16,7 @@ aws configure set aws_access_key_id "\$AWS_ACCESS_KEY_ID" && aws configure set a
 sudo a2enmod proxy
 sudo a2enmod proxy_http
 sudo systemctl enable apache2
-sudo /bin/bash -c 'echo "0 5 * * * $USER $HOME/minecraft-cuarentenacraft/scripts/backup.sh" >> /etc/crontab'
+sudo /bin/bash -c 'echo "0 5 * * * \$USER \$HOME/minecraft-cuarentenacraft/scripts/backup.sh" >> /etc/crontab'
 echo "FINISHED SERVER PREREQUISITES"
 echo "STARTING SERVER CONFIG"
 mkdir /home/\$GCP_USER/backups
