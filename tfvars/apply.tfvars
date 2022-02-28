@@ -1,8 +1,8 @@
 # GOOGLE
-g-region  = "europe-west2"
-g-zone    = "europe-west2-c"
+g-region  = "europe-west1"
+g-zone    = "europe-west1-b"
 g-project = ""
-g-machine-type = "e2-custom-8-18432"
+g-machine-type = "e2-custom-8-18432" #n2d-standard-8
 
 # Instance
 ssh-key = ""
