@@ -16,4 +16,5 @@ override.tf.json
 *_override.tf.json
 
 gcredentials.json
+tfvars/apply.tfvars
 
